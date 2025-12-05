@@ -1,53 +1,79 @@
-# Code
+# Code Overview
 
-Here is all the code needed for analyses in the paper (doi:XXXX): 
+This folder contains the full workflow used to prepare dispersal distance data,
+extract environmental drivers, run statistical models, and generate figures for
+the Enviro–Human Dispersal Drivers project.
 
-- [0-disp-workflowr-script](https://github.com/biowilks/Energy-Budget-Model/blob/master/code/0-disp-workflowr-script.R) provides the code to create a workflowr project and organised subdirectories in GitHub (Blischak et al. 2023). 
+The scripts are numbered in the order they should be run.
 
+---
 
+## 1–4. Data preparation and standardisation
 
-- [1-fish-energy-reserve-and-trait-data](https://github.com/biowilks/Energy-Budget-Model/blob/master/code/1-fish-energy-and-trait-data.R) provides the code to: 
-<div class="indent-list"> 1) Extract body mass data from Fishbase and SeaLifeBase (Boettiger et al. 2023) </div>
-<div class="indent-list"> 2) Refit the energy storage data provided in (Martin et al. 2017) to convert length (mm) to mass (g). This was to obtain the intercept and slope for the fish energy storage allometry used in our model </div>
+### 1-dispersal-distance-data-addTRAIT.R
+Adds trait data (from AVONET, Auger and COMBINE datasets) to the raw
+dispersal distance dataset.
 
+### 2-dispersal-distance-data-convert.R
+Converts the raw dispersal distance data to consistent units, formats, and
+standardised column names.
 
+### 3-dispersal-distance-data-distribution-and-summary.R
+Generates summary statistics and distribution plots for dispersal distances.
 
+### 4-dispersal-distance-data-radius.R
+Calculates buffered dispersal radii in spatial format and prepares data for
+environmental extraction.
 
-- [2-disp-raw-data-transformation](https://github.com/biowilks/Energy-Budget-Model/blob/master/code/2-disp-raw-data-transformation.R) provides the code to transform the raw maximum dispersal distance data to: 
-<div class="indent-list"> 1) Extract and harmonise names using rgbif</div>
-<div class="indent-list"> 2) Add in missing body mass data </div>
-<div class="indent-list"> 3) Add in missing movement mode </div>
-<div class="indent-list"> 4) Filtering data to include flying birds, running mammals, swimming fish only </div>
-<div class="indent-list"> 5) Harmonising all units for distance (m) and body mass (g) </div>
+---
 
+## 5–7. Environmental driver extraction
 
+### 5-dispersal-distance-Productivity-Seasonality.R
+Extracts NDVI (mean, seasonality) and related productivity metrics for each
+dispersal starting point.
 
+### 6-dispersal-distance-Temperature.R
+Extracts temperature variables.
 
-- [3-parameter-conversions](https://github.com/biowilks/Energy-Budget-Model/blob/master/code/3-parameter-conversions.R) provides the code to convert the units from the original parameter allometries to the ones used in the energy budget model. 
+### 7-dispersal-distance-Human-pressures.R
+Extracts human pressure metrics (e.g., Human Footprint Index and fragmentation status index).
 
+---
 
+## 8. Combine all drivers
 
+### 8-dispersal-distance-combine-all-drivers.R
+Merges all environmental, human-pressure, and trait datasets into a single
+analysis-ready object.
 
-- [4-energy-function](https://github.com/biowilks/Energy-Budget-Model/blob/master/code/4-energy-function.R) provides the energy-budget model function needed to obtain the energetic costs of dispersal in J.
+---
 
+## 9–10. Statistical modelling
 
+### 9-dispersal-distance-trait-models.R
+Fits trait-based models predicting dispersal distances across species.
 
+### 10-dispersal-distance-LMM-models-all.R
+Fits mixed-effects models incorporating traits, environmental drivers, and
+random effects (e.g., taxonomy).
 
-- [5-energy-data-visualisation](https://github.com/biowilks/Energy-Budget-Model/blob/master/code/5-energy-data-visualisation.R) provides the code needed to produce figures 3a-d in the paper mentioned above. 
+---
 
+## 11–12. Figures and outputs
 
+### 11-variance-graphs.R
+Generates variance partitioning graphs across all taxa and models.
 
-- [6-disp-function](https://github.com/biowilks/Energy-Budget-Model/blob/master/code/6-disp-function.R) provides the energy-budget model function needed to obtain the maximum dispersal distance of animals in m. 
+### 12-dispersal-distance-trait-environmental-driver-graphs.R
+Generates combined trait–environment visualisations and summary figures for the
+manuscript.
 
+---
 
-
-
-- [7-disp-data-visualisation](https://github.com/biowilks/Energy-Budget-Model/blob/master/code/7-disp-data-visualisation.R) provides the code needed to: 
-<div class="indent-list"> 1) Make model predictions for maximum dispersal distance for each movement mode and related taxonomic group to compare to the empirical data</div>
-<div class="indent-list"> 2) Calculate the percentage of data which lies above model predictions </div>
-<div class="indent-list"> 3) Produce figures 2a-d and 4a-c in the paper mentioned above.</div> 
-
-
-- [8-supplementary-visualisation](https://github.com/biowilks/Energy-Budget-Model/blob/master/code/8-supplementary-visualisation.R) provides the code needed to conduct: 
-<div class="indent-list"> 1) Sensitivity analyses showing the effect of changing the residual energy needed upon arrival (𝝀) on maximum dispersal distance predictions </div>
-<div class="indent-list"> 2) Sensitivity analyses showing the effect of adding resting time or stop overs (ꞵ) on maximum dispersal distance predictions </div>
+## Notes
+- Scripts follow a numbered pipeline and should be run sequentially unless
+otherwise noted.
+- Output files are written to the `/output` directory.
+- Files with `XXX` represent versions run separately for birds, fish, inverts,
+and mammals.

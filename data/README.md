@@ -1,55 +1,65 @@
-# Data
+# Data Overview
 
-Here are all the RAW data files needed for analyses in the paper (doi:XXXX): 
+This folder contains the dispersal and trait datasets used in the
+Enviro–Human Dispersal Drivers project.
 
+---
 
-**Trait databases** 
+## Files
 
-*Wilman et al. 2014*
-- MamFuncDat.txt
-- BirdFuncDat.txt
+### MacroMove_dispersal.RDA
+Subset of the MacroMove global animal movement database.  
+Includes dispersal distances and core traits (body mass and locomotion mode).  
+Used as the primary dataset for all analyses.
 
+### AugerTrait.txt
+Trait data for invertebrates.  
+Used mainly to assign trophic guild and locomotion mode.
 
+### AVONET1_BirdLife.txt
+Bird trait data including body mass, trophic guild, and migratory status.
 
-*Boettiger et al. 2023*
-- FishBase.txt
-- SeaLifeBase.txt
+### COMBINE_trait_data_imputed.txt
+Mammal trait data including body mass and trophic guild.
 
+---
 
+## Trait Extraction Summary
+All species included from MacroMove had body mass and locomotion mode.  
+Additional traits were merged from external databases:
 
-*Herberstein et al. 2022* 
-- AnimalTraits.txt
+- **Trophic guild:**  
+  - Birds → AVONET  
+  - Invertebrates → Auger  
+  - Mammals → COMBINE  
+  - Fish → not used (little variation)
 
+- **Migratory status:**  
+  - Birds → AVONET  
+  - Fish → FishBase  
+  - Invertebrates & mammals → not available
 
+These datasets were combined with the MacroMove subset early in the workflow.
 
+---
 
-**Maximum Dispersal Distance data**
-- DispersalUntransformed.csv
+## References
 
+Wilkinson, C., Berti, E., Dyer, A., Menz, M.H.M., Meyer, C., Tucker, M.A.,  
+Wootton, K.L., Broekman, M.J.E., Hoeks, S., Roth, J., Ryser, R., & Hirt, M.R.  
+*MacroMove: a global database of animal movement across taxa and movement types* (preprint).
 
+Tobias, J.A., Sheard, C., Pigot, A.L., Devenish, A.J.M., Yang, J., Sayol, F.,  
+et al. (2022). AVONET: morphological, ecological and geographical data for all birds.  
+*Ecology Letters*, 25, 581–597.
 
-**Fish Energy Density data**
-(Needed to refit the fish energy storage data provided in (Martin et al. 2017) - see [1-fish-energy-reserve-and-trait-data](https://github.com/biowilks/Energy-Budget-Model/blob/master/code/1-fish-energy-and-trait-data.R)
+Auger, G., Pottier, J., Mathieu, J. & Jabot, F. (2024). Space use of invertebrates  
+in terrestrial habitats: phylogenetic, functional and environmental drivers of  
+interspecific variations. *Global Ecology and Biogeography*, 33, e13811.
 
-- EnergyDensityDatabaseDryad.csv
+Soria, C.D., Pacifici, M., Di Marco, M., Stephen, S.M. & Rondinini, C. (2021).  
+COMBINE: a coalesced mammal database of intrinsic and extrinsic traits.  
+*Ecology*, 102, e03344.
 
-**Converted parameter values**
-- pars_old.csv
-- gammas_old.csv
-
-**Data_metadata**
-- containing all the metadata files for pars_old, gammas_old and DispersalUntransformed. 
-
-
-**References**
-Boettiger, C., Chamberlain, S., Lang, D.T., Wainwright, P. & Cazelles, K. (2023). rfishbase: R Interface to “FishBase.”
-
-
-Herberstein, M.E., McLean, D.J., Lowe, E., Wolff, J.O., Khan, M.K., Smith, K., et al. (2022). AnimalTraits - a curated animal trait database for body mass, metabolic rate and brain size. Sci Data, 9, 265.
-
-
-Martin, B.T., Heintz, R., Danner, E.M. & Nisbet, R.M. (2017). Integrating lipid storage into general representations of fish energetics. Journal of Animal Ecology, 86, 812–825.
-
-
-Wilman, H., Belmaker, J., Simpson, J., de la Rosa, C., Rivadeneira, M.M. & Jetz, W. (2014). EltonTraits 1.0: Species-level foraging attributes of the world’s birds and mammals. Ecology, 95, 2027–2027.
-
+Boettiger, C., Chamberlain, S., Lang, D.T., Wainwright, P. & Cazelles, K. (2023).  
+*rfishbase*: R interface to FishBase.
