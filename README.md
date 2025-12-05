@@ -27,6 +27,7 @@ Enviro-Human-Dispersal-Drivers/ \
 │   ├── Figure_1_Dispersal_distance_distribution.PNG \
 │   ├── Figure_2_Variance_trait_graphs_all.PNG \
 │   ├── Figure_3_Trait_driver_results_all.PNG \
+│   ├── Figure_4_Environmental_Human_driver_results_all.PNG \
 │   ├── Figure_S1_Variance_random_effect_graphs_all.PNG \
 │   ├── Table1_Dispersal_driver_predictions.PNG \
 │   ├── HUMANPRESSURES_all.PNG \
